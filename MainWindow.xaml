@@ -70,23 +70,95 @@
                                       FontFamily="{DynamicResource Poppins}"
                                       FontSize="14" HorizontalAlignment="Left">
                                     <MenuItem Header="File">
-                                        <MenuItem Header="New Window" />
-                                        <MenuItem Header="Open" />
-                                        <MenuItem Header="Save" />
-                                        <Separator />
-                                        <MenuItem Header="Exit" />
+                                        <MenuItem x:Name="menuItem_NewWindow" 
+                                                  Header="New Window" 
+                                                  Click="menuItemClick_File"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <Separator/>
+                                        <MenuItem x:Name="menuItem_OpenFile" 
+                                                  Header="Open File" 
+                                                  Click="menuItemClick_File"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <MenuItem x:Name="menuItem_SaveFile" 
+                                                  Header="Save File" 
+                                                  Click="menuItemClick_File"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <Separator/>
+                                        <MenuItem x:Name="menuItem_Exit" 
+                                                  Header="Exit" 
+                                                  Click="menuItemClick_File"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
 
                                     <MenuItem Header="Edit" Margin="5,0,5,0">
-                                        <MenuItem Header="Copy" />
-                                        <MenuItem Header="Paste" />
-                                        <MenuItem Header="Cut" />
+                                        <MenuItem x:Name="menuItem_Undo" 
+                                                  Header="Undo" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <MenuItem x:Name="menuItem_Redo" 
+                                                  Header="Redo" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <Separator/>
+                                        <MenuItem x:Name="menuItem_Cut" 
+                                                  Header="Cut" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <MenuItem x:Name="menuItem_Copy" 
+                                                  Header="Copy" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <MenuItem x:Name="menuItem_Paste" 
+                                                  Header="Paste" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <MenuItem x:Name="menuItem_Delete" 
+                                                  Header="Delete" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <Separator/>
+                                        <MenuItem x:Name="menuItem_SearchOnline" 
+                                                  Header="Search Online" 
+                                                  Click="menuItemClick_Edit"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
 
                                     <MenuItem Header="View">
-                                        <MenuItem Header="Zoom In" />
-                                        <MenuItem Header="Zoom Out" />
-                                        <MenuItem Header="Reset Zoom" />
+
+                                        <MenuItem x:Name="menuItem_ToggleSidebar" 
+                                                  Header="Toggle Explorer" 
+                                                  Click="menuItemClick_View"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <MenuItem x:Name="menuItem_ToggleBottombar" 
+                                                  Header="Toggle Status Bar" 
+                                                  Click="menuItemClick_View"
+                                                  Background="{DynamicResource TertiaryBrush}"
+                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
                                 </Menu>
                             </Grid>
@@ -375,6 +447,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Border x:Name="border_Sidebar"
+                            Visibility="Collapsed"
                             Grid.Column="0"
                             Background="{DynamicResource TertiaryBrush}" 
                             Width="192">
@@ -432,13 +505,13 @@
                         FontFamily="Consolas"
                         Padding="0"
                         Grid.Column="1"
-                        Text="eee"
                         FontSize="10pt"/>
 
 
                 </Grid>
 
                 <Border x:Name="border_Bottombar"
+                        Visibility="Collapsed"
                         Grid.Row="3"
                         Background="{DynamicResource SecondaryBrush}" 
                         Height="32"

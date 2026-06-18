@@ -1,31 +1,32 @@
 ﻿using Chronos.Properties;
-using ICSharpCode.AvalonEdit;
 using Microsoft.Win32;
 using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Chronos
 {
     public partial class MainWindow : Window
     {
-        Geometry geometry_Maximize = Application.Current.TryFindResource("Maximize") as Geometry;
-        Geometry geometry_Restore = Application.Current.TryFindResource("Restore") as Geometry;
+        Geometry? geometry_Maximize =
+            Application.Current.TryFindResource("Maximize") as Geometry;
 
-        Geometry geometry_SidebarEnabled = Application.Current.TryFindResource("Sidebar_Enabled") as Geometry;
-        Geometry geometry_SidebarDisabled = Application.Current.TryFindResource("Sidebar_Disabled") as Geometry;
+        Geometry? geometry_Restore =
+            Application.Current.TryFindResource("Restore") as Geometry;
 
-        Geometry geometry_BottombarEnabled = Application.Current.TryFindResource("Bottombar_Enabled") as Geometry;
-        Geometry geometry_BottombarDisabled = Application.Current.TryFindResource("Bottombar_Disabled") as Geometry;
+        Geometry? geometry_SidebarEnabled =
+            Application.Current.TryFindResource("Sidebar_Enabled") as Geometry;
+
+        Geometry? geometry_SidebarDisabled =
+            Application.Current.TryFindResource("Sidebar_Disabled") as Geometry;
+
+        Geometry? geometry_BottombarEnabled =
+            Application.Current.TryFindResource("Bottombar_Enabled") as Geometry;
+
+        Geometry? geometry_BottombarDisabled =
+            Application.Current.TryFindResource("Bottombar_Disabled") as Geometry;
 
         public MainWindow()
         {
@@ -43,7 +44,6 @@ namespace Chronos
 
         public void LoadSettings()
         {
-
             ToggleSidebar(Settings.Default.Sidebar);
             ToggleBottombar(Settings.Default.Bottombar);
         }
@@ -131,6 +131,9 @@ namespace Chronos
         {
             button_Undo.IsEnabled = avalonEdit_TextEditor.CanUndo;
             button_Redo.IsEnabled = avalonEdit_TextEditor.CanRedo;
+
+            menuItem_Undo.IsEnabled = avalonEdit_TextEditor.CanUndo;
+            menuItem_Redo.IsEnabled = avalonEdit_TextEditor.CanRedo;
         }
 
         private void buttonClick_WindowControls(object sender, RoutedEventArgs e)
@@ -144,7 +147,7 @@ namespace Chronos
                         break;
                     case "button_Maximize":
                         WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-                        path_Maximize.Data = WindowState == WindowState.Maximized ? Geometry.Parse(geometry_Restore.ToString()) : Geometry.Parse(geometry_Maximize.ToString());
+                        path_Maximize.Data = WindowState == WindowState.Maximized ? Geometry.Parse(geometry_Restore?.ToString()) : Geometry.Parse(geometry_Maximize?.ToString());
                         break;
                     case "button_Minimize":
                         WindowState = WindowState.Minimized;
@@ -162,29 +165,25 @@ namespace Chronos
                     case "button_ToggleSidebar":
                         if (border_Sidebar.Visibility == Visibility.Visible)
                         {
-                            border_Sidebar.Visibility = Visibility.Collapsed;
-                            path_Sidebar.Data = Geometry.Parse(geometry_SidebarDisabled.ToString());
+                            ToggleSidebar(false);
                         }
                         else
                         {
-                            border_Sidebar.Visibility = Visibility.Visible;
-                            path_Sidebar.Data = Geometry.Parse(geometry_SidebarEnabled.ToString());
+                            ToggleSidebar(true);
                         }
                         break;
                     case "button_ToggleBottombar":
                         if (border_Bottombar.Visibility == Visibility.Visible)
                         {
-                            border_Bottombar.Visibility = Visibility.Collapsed;
-                            path_Bottombar.Data = Geometry.Parse(geometry_BottombarDisabled.ToString());
+                            ToggleBottombar(false);
                         }
                         else
                         {
-                            border_Bottombar.Visibility = Visibility.Visible;
-                            path_Bottombar.Data = Geometry.Parse(geometry_BottombarEnabled.ToString());
+                            ToggleBottombar(true);
                         }
                         break;
                     case "button_Settings":
-                        MessageBox.Show("Settings button clicked!");
+                        MessageBox.Show("settings go BRRRR");
                         break;
                 }
             }
@@ -221,6 +220,87 @@ namespace Chronos
                     case "button_Redo":
                         avalonEdit_TextEditor.Redo();
                         UpdateUndoRedoButtons();
+                        break;
+                }
+            }
+        }
+
+        private void menuItemClick_File(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem)
+            {
+                switch (menuItem.Name)
+                {
+                    case "menuItem_NewWindow":
+                        MainWindow window = new MainWindow();
+                        window.Show();
+                        break;
+                    case "menuItem_OpenFile":
+                        OpenFile();
+                        break;
+                    case "menuItem_SaveFile":
+                        SaveFile();
+                        break;
+                    case "menuItem_Exit":
+                        Application.Current.Shutdown();
+                        break;
+                }
+            }
+        }
+        private void menuItemClick_Edit(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem)
+            {
+                switch (menuItem.Name)
+                {
+                    case "menuItem_Cut":
+                        avalonEdit_TextEditor.Cut();
+                        break;
+                    case "menuItem_Copy":
+                        avalonEdit_TextEditor.Copy();
+                        break;
+                    case "menuItem_Paste":
+                        avalonEdit_TextEditor.Paste();
+                        break;
+                    case "menuItem_Delete":
+                        avalonEdit_TextEditor.Delete();
+                        break;
+                    case "menuItem_Undo":
+                        avalonEdit_TextEditor.Undo();
+                        UpdateUndoRedoButtons();
+                        break;
+                    case "menuItem_Redo":
+                        avalonEdit_TextEditor.Redo();
+                        UpdateUndoRedoButtons();
+                        break;
+                }
+            }
+        }
+        private void menuItemClick_View(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem menuItem)
+            {
+                switch (menuItem.Name)
+                {
+                    case "menuItem_ToggleSidebar":
+                        if (border_Sidebar.Visibility == Visibility.Visible)
+                        {
+                            ToggleSidebar(false);
+                        }
+                        else
+                        {
+                            ToggleSidebar(true);
+                        }
+                        break;
+                    case "menuItem_ToggleBottombar":
+                        if (border_Bottombar.Visibility == Visibility.Visible)
+                        {
+                            ToggleBottombar(false);
+                        }
+                        else
+                        {
+                            ToggleBottombar(true);
+                        }
                         break;
                 }
             }
