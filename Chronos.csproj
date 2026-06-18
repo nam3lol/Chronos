@@ -6,10 +6,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-	<Version>1.0.1</Version>
+	<Version>0.0.1</Version>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <StartupObject>Chronos.App</StartupObject>
     <Authors>nam3lol</Authors>
+    <Title>Chronos</Title>
+    <Description>A simple, yet powerful text editor software.</Description>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -19,6 +22,39 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <IsPublishable>False</IsPublishable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Code\CascadiaCode.ttf" />
+    <None Remove="Resources\Fonts\Code\CascadiaCode_Italic.ttf" />
+    <None Remove="Resources\Fonts\Code\FiraCode.ttf" />
+    <None Remove="Resources\Fonts\Code\JetBrainsMono.ttf" />
+    <None Remove="Resources\Fonts\Code\JetBrainsMono_Italic.ttf" />
+    <None Remove="Resources\Fonts\Interface\Poppins.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Code\CascadiaCode.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Code\CascadiaCode_Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Code\FiraCode.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Code\JetBrainsMono.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Code\JetBrainsMono_Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Interface\Poppins.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Resources\Images\" />

@@ -1,5 +1,6 @@
 ﻿using Chronos.Properties;
 using Microsoft.Win32;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,8 @@ namespace Chronos
 {
     public partial class MainWindow : Window
     {
+        public bool LoadSavedEditorContent { get; set; } = true;
+
         Geometry? geometry_Maximize =
             Application.Current.TryFindResource("Maximize") as Geometry;
 
@@ -28,26 +31,42 @@ namespace Chronos
         Geometry? geometry_BottombarDisabled =
             Application.Current.TryFindResource("Bottombar_Disabled") as Geometry;
 
-        public MainWindow()
-        {
+        public MainWindow() =>
             InitializeComponent();
-            Opacity = 0;
-            grid_BorderGrid.Opacity = 0;
-            grid_BorderGrid.Visibility = Visibility.Collapsed;
-            grid_Splash.Opacity = 0;
-
-            SplashAnimation();
-
-            UpdateUndoRedoButtons();
-            avalonEdit_TextEditor.TextChanged += TextEditor_TextChanged;
-        }
 
         public void LoadSettings()
         {
             ToggleSidebar(Settings.Default.Sidebar);
             ToggleBottombar(Settings.Default.Bottombar);
+
+            Topmost = Settings.Default.Topmost;
+
+            avalonEdit_TextEditor.FontFamily = new FontFamily(Settings.Default.EditorFont);
         }
 
+        public void SaveSettings()
+        {
+            Settings.Default.Sidebar = border_Sidebar.Visibility == Visibility.Visible;
+            Settings.Default.Bottombar = border_Bottombar.Visibility == Visibility.Visible;
+            Settings.Default.Topmost = Topmost;
+            Settings.Default.EditorFont = avalonEdit_TextEditor.FontFamily.Source;
+            Settings.Default.SavedEditorContent = avalonEdit_TextEditor.Text;
+            Settings.Default.Save();
+        }
+
+        public void ToggleMaximized(bool maximized)
+        {
+            if (maximized)
+            {
+                WindowState = WindowState.Maximized;
+                path_Maximize.Data = geometry_Restore;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+                path_Maximize.Data = geometry_Maximize;
+            }
+        }
         public void ToggleSidebar(bool enabled)
         {
             if (enabled)
@@ -82,7 +101,7 @@ namespace Chronos
 
         private void TextEditor_TextChanged(object? sender, EventArgs e)
         {
-            UpdateUndoRedoButtons();
+            UpdateUndoRedoState();
         }
 
         private void Drag(object sender, MouseButtonEventArgs e) => DragMove();
@@ -127,27 +146,32 @@ namespace Chronos
             }
         }
 
-        private void UpdateUndoRedoButtons()
+        private void UpdateUndoRedoState()
         {
-            button_Undo.IsEnabled = avalonEdit_TextEditor.CanUndo;
-            button_Redo.IsEnabled = avalonEdit_TextEditor.CanRedo;
+            bool canUndo = avalonEdit_TextEditor.CanUndo;
+            bool canRedo = avalonEdit_TextEditor.CanRedo;
 
-            menuItem_Undo.IsEnabled = avalonEdit_TextEditor.CanUndo;
-            menuItem_Redo.IsEnabled = avalonEdit_TextEditor.CanRedo;
+            button_Undo.IsEnabled = canUndo;
+            button_Redo.IsEnabled = canRedo;
+
+            menuItem_Undo.IsEnabled = canUndo;
+            menuItem_Redo.IsEnabled = canRedo;
         }
 
-        private void buttonClick_WindowControls(object sender, RoutedEventArgs e)
+        private async void buttonClick_WindowControls(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
             {
                 switch (button.Name)
                 {
                     case "button_Close":
+                        SaveSettings();
+                        AnimLib.Fade(this, 1, 0, 500);
+                        await Task.Delay(500);
                         Close();
                         break;
                     case "button_Maximize":
-                        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-                        path_Maximize.Data = WindowState == WindowState.Maximized ? Geometry.Parse(geometry_Restore?.ToString()) : Geometry.Parse(geometry_Maximize?.ToString());
+                        ToggleMaximized(WindowState != WindowState.Maximized);
                         break;
                     case "button_Minimize":
                         WindowState = WindowState.Minimized;
@@ -164,26 +188,29 @@ namespace Chronos
                 {
                     case "button_ToggleSidebar":
                         if (border_Sidebar.Visibility == Visibility.Visible)
-                        {
                             ToggleSidebar(false);
-                        }
                         else
-                        {
                             ToggleSidebar(true);
-                        }
                         break;
                     case "button_ToggleBottombar":
-                        if (border_Bottombar.Visibility == Visibility.Visible)
-                        {
+                        if (border_Bottombar.Visibility == Visibility.Visible) 
                             ToggleBottombar(false);
-                        }
                         else
-                        {
                             ToggleBottombar(true);
-                        }
                         break;
                     case "button_Settings":
-                        MessageBox.Show("settings go BRRRR");
+                        MessageBoxResult result = MessageBox.Show(
+                            "Toggle Topmost?",
+                            "Chronos",
+                            MessageBoxButton.YesNo,
+                            MessageBoxImage.Question);
+
+                        bool yes = result == MessageBoxResult.Yes;
+
+                        if (yes)
+                        {
+                            Topmost = !Topmost;
+                        }
                         break;
                 }
             }
@@ -215,11 +242,11 @@ namespace Chronos
                         break;
                     case "button_Undo":
                         avalonEdit_TextEditor.Undo();
-                        UpdateUndoRedoButtons();
+                        UpdateUndoRedoState();
                         break;
                     case "button_Redo":
                         avalonEdit_TextEditor.Redo();
-                        UpdateUndoRedoButtons();
+                        UpdateUndoRedoState();
                         break;
                 }
             }
@@ -232,7 +259,13 @@ namespace Chronos
                 switch (menuItem.Name)
                 {
                     case "menuItem_NewWindow":
-                        MainWindow window = new MainWindow();
+                        SaveSettings();
+
+                        var window = new MainWindow
+                        {
+                            LoadSavedEditorContent = false
+                        };
+
                         window.Show();
                         break;
                     case "menuItem_OpenFile":
@@ -267,11 +300,23 @@ namespace Chronos
                         break;
                     case "menuItem_Undo":
                         avalonEdit_TextEditor.Undo();
-                        UpdateUndoRedoButtons();
+                        UpdateUndoRedoState();
                         break;
                     case "menuItem_Redo":
                         avalonEdit_TextEditor.Redo();
-                        UpdateUndoRedoButtons();
+                        UpdateUndoRedoState();
+                        break;
+                    case "menuItem_SearchOnline":
+
+                        string query = avalonEdit_TextEditor.SelectedText;
+                        string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
+
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = url,
+                            UseShellExecute = true
+                        });
+
                         break;
                 }
             }
@@ -306,7 +351,7 @@ namespace Chronos
             }
         }
 
-        public async void SplashAnimation()
+        public async Task StartSplashAnimAsync()
         {
             grid_Splash.Margin = new Thickness(0, 0, 0, 0);
             AnimLib.Fade(this, 0, 1, 500);
@@ -322,6 +367,34 @@ namespace Chronos
 
             grid_Splash.Visibility = Visibility.Collapsed;
             grid_Splash.Margin = new Thickness(999, 999, 999, 999);
+        }
+
+        private void InitializeUIState()
+        {
+            Opacity = 0;
+            grid_BorderGrid.Opacity = 0;
+            grid_BorderGrid.Visibility = Visibility.Collapsed;
+            grid_Splash.Opacity = 0;
+        }
+
+        private void InitializeEditor()
+        {
+            avalonEdit_TextEditor.TextChanged += TextEditor_TextChanged;
+
+            if (LoadSavedEditorContent)
+                avalonEdit_TextEditor.Text = Settings.Default.SavedEditorContent;
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitializeUIState();
+
+            await StartSplashAnimAsync();
+
+            InitializeEditor();
+            LoadSettings();
+
+            UpdateUndoRedoState();
         }
     }
 }

@@ -5,17 +5,17 @@
     <Setting Name="Topmost" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Transparent" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="Sidebar" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Bottombar" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="WindowSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">450, 800</Value>
+    <Setting Name="SavedEditorContent" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="EditorFont" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Arial</Value>
     </Setting>
   </Settings>
 </SettingsFile>

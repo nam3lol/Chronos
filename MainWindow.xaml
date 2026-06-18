@@ -15,7 +15,8 @@
         AllowsTransparency="True"
         FontFamily="{DynamicResource Poppins}"
         ResizeMode="CanResize"
-        Background="Transparent">
+        Background="Transparent"
+        Icon="/Resources/Icon.ico" Loaded="Window_Loaded">
 
     <WindowChrome.WindowChrome>
         <WindowChrome

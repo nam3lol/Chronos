@@ -37,18 +37,6 @@ namespace Chronos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool Transparent {
-            get {
-                return ((bool)(this["Transparent"]));
-            }
-            set {
-                this["Transparent"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool Sidebar {
             get {
@@ -73,13 +61,25 @@ namespace Chronos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("450, 800")]
-        public global::System.Drawing.Size WindowSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedEditorContent {
             get {
-                return ((global::System.Drawing.Size)(this["WindowSize"]));
+                return ((string)(this["SavedEditorContent"]));
             }
             set {
-                this["WindowSize"] = value;
+                this["SavedEditorContent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Arial")]
+        public string EditorFont {
+            get {
+                return ((string)(this["EditorFont"]));
+            }
+            set {
+                this["EditorFont"] = value;
             }
         }
     }
