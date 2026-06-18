@@ -313,7 +313,7 @@ namespace Chronos
             await Task.Delay(1000);
             AnimLib.Fade(grid_Splash, 0, 1, 500);
 
-            await Task.Delay(2500); // loading code goes here; 1 second delay for demonstration purposes
+            await Task.Delay(2500); // loading code goes here
 
             AnimLib.Fade(grid_Splash, 1, 0, 500);
             await Task.Delay(1000);
