@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Cd+H9ZkN6uA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nam3\\Desktop\\Chronos\\Chronos.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nam3\\.nuget\\packages\\avalonedit\\6.3.1.120\\avalonedit.6.3.1.120.nupkg.sha512",
+    "C:\\Users\\nam3\\.nuget\\packages\\costura.fody\\6.2.0\\costura.fody.6.2.0.nupkg.sha512",
+    "C:\\Users\\nam3\\.nuget\\packages\\discordrichpresence\\1.6.1.70\\discordrichpresence.1.6.1.70.nupkg.sha512",
+    "C:\\Users\\nam3\\.nuget\\packages\\fody\\6.9.3\\fody.6.9.3.nupkg.sha512",
+    "C:\\Users\\nam3\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
