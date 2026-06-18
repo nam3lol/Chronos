@@ -16,7 +16,8 @@
         FontFamily="{DynamicResource Poppins}"
         ResizeMode="CanResize"
         Background="Transparent"
-        Icon="/Resources/Icon.ico" Loaded="Window_Loaded">
+        Icon="/Resources/app.ico" 
+        Loaded="Window_Loaded">
 
     <WindowChrome.WindowChrome>
         <WindowChrome
@@ -386,23 +387,8 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="3">
+                            
                             <Border Background="{DynamicResource BorderBrush}" Width="1" Grid.RowSpan="67" HorizontalAlignment="Center"/>
-                            <Button x:Name="button_ToggleBottombar"
-                                    Height="25" 
-                                    Width="25"
-                                    Style="{DynamicResource RoundedButtonStyle}"
-                                    Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
-                                    BorderBrush="Transparent" 
-                                    Margin="5,0,0,0" Click="buttonClick_ToolbarControlsRight">
-                                <Path x:Name="path_Bottombar" Grid.Column="0" 
-                                      Data="{DynamicResource Bottombar_Disabled}" 
-                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
-                                      HorizontalAlignment="Center"
-                                      Height="15" 
-                                      VerticalAlignment="Center"
-                                      Stretch="Fill"/>
-                            </Button>
 
                             <Button x:Name="button_ToggleSidebar"
                                     Height="25" 
@@ -410,9 +396,26 @@
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
                                     Foreground="{DynamicResource SecondaryForegroundBrush}"
-                                    BorderBrush="Transparent" Click="buttonClick_ToolbarControlsRight" Margin="5,0,5,0">
+                                    BorderBrush="Transparent" Click="buttonClick_ToolbarControlsRight" Margin="5,0,2.5,0">
                                 <Path x:Name="path_Sidebar" Grid.Column="0" 
                                       Data="{DynamicResource Sidebar_Disabled}" 
+                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
+                                      HorizontalAlignment="Center"
+                                      Height="15" 
+                                      VerticalAlignment="Center"
+                                      Stretch="Fill"/>
+                            </Button>
+                            
+                            <Button x:Name="button_ToggleBottombar"
+                                    Height="25" 
+                                    Width="25"
+                                    Style="{DynamicResource RoundedButtonStyle}"
+                                    Background="Transparent"
+                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    BorderBrush="Transparent" 
+                                    Margin="2.5,0,2.5,0" Click="buttonClick_ToolbarControlsRight">
+                                <Path x:Name="path_Bottombar" Grid.Column="0" 
+                                      Data="{DynamicResource Bottombar_Disabled}" 
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
                                       HorizontalAlignment="Center"
                                       Height="15" 
@@ -427,7 +430,7 @@
                                     Background="Transparent"
                                     Foreground="{DynamicResource SecondaryForegroundBrush}"
                                     BorderBrush="Transparent" 
-                                    Margin="0,0,5,0" Click="buttonClick_ToolbarControlsRight">
+                                    Margin="2.5,0,5,0" Click="buttonClick_ToolbarControlsRight">
                                 <Path x:Name="path_Settings" Grid.Column="0" 
                                       Data="{DynamicResource Settings}" 
                                       Width="15" 
@@ -437,6 +440,7 @@
                                       Stretch="Fill"
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                             </Button>
+                            
                         </StackPanel>
                     </Grid>
                 </Border>
