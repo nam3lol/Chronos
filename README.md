@@ -10,6 +10,6 @@ Chronos is a text editor that is designed to be simple yet efficient, being pack
 <img width="1280" height="720" alt="Interface" src="https://github.com/user-attachments/assets/7e59bbee-29ca-4ba3-a3b4-8c65f97643df" />
 
 ## Features planned
-1. Support for *Windows*, *Mac*, and *Linux*.
+1. Support for other platforms, including *Mac*, and *Linux*.
 2. Optional AI writing tools, such as writing, rewording, summarization, and tone and format changing.
 3. Support for the Discord Rich Presence API.
