@@ -1,6 +1,6 @@
 <img width="1280" height="720" alt="Chronos - Banner 1" src="https://github.com/user-attachments/assets/c5cb16c6-bc73-47b5-8d42-6d66de1b8aa6" />
 
-# Chronos | A simple, yet powerful text editing software.
+# Chronos | A simple, yet powerful text editor.
 
 *Simple, beautiful, lightweight, efficient, reliable.*
 These are all words that describe Chronos.
