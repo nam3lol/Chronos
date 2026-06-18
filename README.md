@@ -3,7 +3,7 @@
 # Chronos | A simple yet powerful text editor.
 
 *Simple, beautiful, lightweight, efficient, reliable.*
-These are all words that describe Chronos.
+These are all words that describe **Chronos**.
 
 **Chronos** is a text editor that is designed to be simple yet efficient, being packed with only the essential features so you won't be stressed out.
 
