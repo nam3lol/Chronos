@@ -8,7 +8,7 @@ namespace Chronos.Classes
             Assembly.GetExecutingAssembly().GetName().Name;
 
         public static readonly string AppDescription =
-            "A simple, yet powerful text editor software.";
+            "A simple yet powerful text editor.";
 
         public static readonly string? AppVersion =
             Assembly.GetExecutingAssembly().GetName().Version?.ToString();
