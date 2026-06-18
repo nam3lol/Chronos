@@ -15,7 +15,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="EditorFont" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Arial</Value>
+      <Value Profile="(Default)">Consolas</Value>
     </Setting>
   </Settings>
 </SettingsFile>

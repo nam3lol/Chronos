@@ -73,7 +73,7 @@ namespace Chronos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Arial")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Consolas")]
         public string EditorFont {
             get {
                 return ((string)(this["EditorFont"]));
