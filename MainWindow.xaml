@@ -225,6 +225,15 @@
                                                   Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
                                                   Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
+                                        <Separator Style="{DynamicResource MenuItemSeperator}"/>
+                                        <MenuItem x:Name="menuItem_ChangeTheme" 
+                                                  Header="Change Theme"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
+                                                  Click="menuItemClick_View"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
                                 </Menu>
                             </Grid>

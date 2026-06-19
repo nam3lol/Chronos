@@ -6,13 +6,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-	<Version>0.0.2</Version>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <StartupObject>Chronos.App</StartupObject>
-    <Authors>nam3lol</Authors>
-    <Title>Chronos</Title>
-    <Description>A simple, yet powerful text editor software.</Description>
     <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+    <Version>$(VersionPrefix)</Version>
+    <FileVersion>0.0.3.0</FileVersion>
+	<AssemblyTitle>A simple yet powerful text editor.</AssemblyTitle>
+	<Company>nam3lol</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

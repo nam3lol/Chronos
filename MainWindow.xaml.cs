@@ -1,4 +1,5 @@
-﻿using Chronos.Properties;
+﻿using Chronos.Classes;
+using Chronos.Properties;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
@@ -19,6 +20,8 @@ namespace Chronos
         private Geometry? geometry_SidebarDisabled;
         private Geometry? geometry_BottombarEnabled;
         private Geometry? geometry_BottombarDisabled;
+        private Geometry? geometry_LightMode;
+        private Geometry? geometry_DarkMode;
 
         private Geometry? GetGeometry(string resourceKey)
         {
@@ -31,6 +34,8 @@ namespace Chronos
         private Geometry? GeometrySidebarDisabled => geometry_SidebarDisabled ??= GetGeometry("Sidebar_Disabled");
         private Geometry? GeometryBottombarEnabled => geometry_BottombarEnabled ??= GetGeometry("Bottombar_Enabled");
         private Geometry? GeometryBottombarDisabled => geometry_BottombarDisabled ??= GetGeometry("Bottombar_Disabled");
+        private Geometry? GeometryLightMode => geometry_LightMode ??= GetGeometry("LightMode");
+        private Geometry? GeometryDarkMode => geometry_DarkMode ??= GetGeometry("DarkMode");
 
         public MainWindow() =>
             InitializeComponent();
@@ -41,9 +46,19 @@ namespace Chronos
             ToggleBottombar(Settings.Default.Bottombar);
             ToggleLineNumbers(Settings.Default.LineNumbers);
 
-            Topmost = Settings.Default.Topmost;
+            ThemeManager.ThemeChanged += UpdateThemeToggleUI;
+            ThemeManager.SetTheme(Settings.Default.Theme ?? "Dark");
 
+            Topmost = Settings.Default.Topmost;
             avalonEdit_TextEditor.FontFamily = new FontFamily(Settings.Default.EditorFont);
+        }
+
+        private void UpdateThemeToggleUI()
+        {
+            bool isDark = ThemeManager.CurrentTheme == "Dark";
+
+            menuItem_ChangeTheme.Tag = isDark ? GeometryLightMode : GeometryDarkMode;
+            menuItem_ChangeTheme.Header = isDark ? "Light Mode" : "Dark Mode";
         }
 
         public void SaveSettings()
@@ -54,6 +69,7 @@ namespace Chronos
             Settings.Default.Topmost = Topmost;
             Settings.Default.EditorFont = avalonEdit_TextEditor.FontFamily.Source;
             Settings.Default.SavedEditorContent = avalonEdit_TextEditor.Text;
+            Settings.Default.Theme = ThemeManager.CurrentTheme;
             Settings.Default.Save();
         }
 
@@ -328,6 +344,11 @@ namespace Chronos
                 case "menuItem_ToggleLineNumbers":
                     ToggleLineNumbers(!avalonEdit_TextEditor.ShowLineNumbers);
                     break;
+                case "menuItem_ChangeTheme":
+                    ThemeManager.SetTheme(
+                        ThemeManager.CurrentTheme == "Dark" ? "Light" : "Dark"
+                    );
+                    break;
             }
         }
 
@@ -369,7 +390,11 @@ namespace Chronos
             avalonEdit_TextEditor.TextChanged += TextEditor_TextChanged;
 
             if (LoadSavedEditorContent)
-                avalonEdit_TextEditor.Text = Settings.Default.SavedEditorContent;
+            {
+                string savedContent = Settings.Default.SavedEditorContent;
+                if (!string.IsNullOrEmpty(savedContent))
+                    avalonEdit_TextEditor.Text = savedContent;
+            }
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)

@@ -6,10 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/ResourceDictionarys/Theme.xaml"/>
-                <ResourceDictionary Source="/ResourceDictionarys/Fonts.xaml"/>
-                <ResourceDictionary Source="/ResourceDictionarys/Icons.xaml"/>
-                <ResourceDictionary Source="/ResourceDictionarys/Styles.xaml"/>
+                <ResourceDictionary Source="/Resources/Fonts.xaml"/>
+                <ResourceDictionary Source="/Resources/Icons.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles.xaml"/>
+
+                <ResourceDictionary Source="Resources/Themes/Dark.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
