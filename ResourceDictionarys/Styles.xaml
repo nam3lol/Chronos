@@ -2,14 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Styles/Buttons.xaml"/>
-        <!--<ResourceDictionary Source="Styles/CheckBoxes.xaml"/>
-        <ResourceDictionary Source="Styles/ComboBoxes.xaml"/>
-        <ResourceDictionary Source="Styles/Grids.xaml"/>
-        <ResourceDictionary Source="Styles/Labels.xaml"/>
-        <ResourceDictionary Source="Styles/ListViews.xaml"/>
-        <ResourceDictionary Source="Styles/ProgressBars.xaml"/>
-        <ResourceDictionary Source="Styles/RadioButtons.xaml"/>
-        <ResourceDictionary Source="Styles/Sliders.xaml"/>
-        <ResourceDictionary Source="Styles/TextBoxes.xaml"/>-->
+        <ResourceDictionary Source="Styles/ToolTip.xaml"/>
+        <ResourceDictionary Source="Styles/ScrollBar.xaml"/>
+        <ResourceDictionary Source="Styles/Thumb.xaml"/>
+        <ResourceDictionary Source="Styles/MenuItem.xaml"/>
+        <ResourceDictionary Source="Styles/ScrollViewer.xaml"/>
+        <ResourceDictionary Source="Styles/Separator.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

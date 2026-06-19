@@ -6,16 +6,19 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Sidebar" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Bottombar" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SavedEditorContent" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="EditorFont" Type="System.String" Scope="User">
       <Value Profile="(Default)">Consolas</Value>
+    </Setting>
+    <Setting Name="LineNumbers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

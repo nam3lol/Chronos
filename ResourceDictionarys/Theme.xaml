@@ -1,39 +1,149 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!-- Base colors -->
-    <Color x:Key="AccentColor">#3B82F6</Color>
-    <Color x:Key="PrimaryColor">#181818</Color>
-    <Color x:Key="SecondaryColor">#1E1E1E</Color>
-    <Color x:Key="TertiaryColor">#1B1B1B</Color>
-    <Color x:Key="PrimaryForegroundColor">#FFFFFF</Color>
-    <Color x:Key="SecondaryForegroundColor">#E1E1E1</Color>
-    <Color x:Key="TertiaryForegroundColor">#C8C8C8</Color>
-    <Color x:Key="BorderColor">#2d2d2d</Color>
+    <!-- Base Window Colors -->
+    <Color x:Key="PrimaryWindowAccentColor">#3B82F6</Color>
+    <Color x:Key="PrimaryWindowColor">#181818</Color>
+    <Color x:Key="SecondaryWindowColor">#1E1E1E</Color>
+    <Color x:Key="TertiaryWindowColor">#1B1B1B</Color>
 
-    <!-- Brushes -->
-    <SolidColorBrush x:Key="AccentBrush"
-         Color="{DynamicResource AccentColor}" />
+    <Color x:Key="PrimaryWindowForegroundColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryWindowForegroundColor">#E1E1E1</Color>
+    <Color x:Key="TertiaryWindowForegroundColor">#C8C8C8</Color>
 
-    <SolidColorBrush x:Key="PrimaryBrush"
-         Color="{DynamicResource PrimaryColor}" />
+    <Color x:Key="WindowBorderColor">#2d2d2d</Color>
 
-    <SolidColorBrush x:Key="SecondaryBrush"
-         Color="{DynamicResource SecondaryColor}" />
+    <!-- Base Editor Colors -->
+    <Color x:Key="EditorBackgroundColor">Transparent</Color>
 
-    <SolidColorBrush x:Key="TertiaryBrush"
-     Color="{DynamicResource TertiaryColor}" />
+    <Color x:Key="EditorForegroundColor">#E1E1E1</Color>
+    <Color x:Key="EditorLineNumbersForegroundColor">#7F7F7F</Color>
 
-    <SolidColorBrush x:Key="PrimaryForegroundBrush"
-         Color="{DynamicResource PrimaryForegroundColor}" />
+    <!-- Base Button Colors -->
+    <Color x:Key="PrimaryButtonAccentColor">#3B82F6</Color>
+    <Color x:Key="PrimaryButtonColor">#181818</Color>
+    <Color x:Key="SecondaryButtonColor">#1E1E1E</Color>
+    <Color x:Key="TertiaryButtonColor">#1B1B1B</Color>
 
-    <SolidColorBrush x:Key="SecondaryForegroundBrush"
-         Color="{DynamicResource SecondaryForegroundColor}" />
+    <Color x:Key="PrimaryButtonForegroundColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryButtonForegroundColor">#E1E1E1</Color>
+    <Color x:Key="TertiaryButtonForegroundColor">#C8C8C8</Color>
 
-    <SolidColorBrush x:Key="TertiaryForegroundBrush"
-         Color="{DynamicResource TertiaryForegroundColor}" />
+    <Color x:Key="ButtonBorderColor">#2d2d2d</Color>
 
-    <SolidColorBrush x:Key="BorderBrush"
-         Color="{DynamicResource BorderColor}" />
+    <!-- Base Tooltip Colors -->
+    <Color x:Key="TooltipBackgroundColor">#1B1B1B</Color>
+    <Color x:Key="TooltipBorderColor">#2d2d2d</Color>
+    <Color x:Key="TooltipForegroundColor">#E1E1E1</Color>
+
+    <!-- Base MenuItem Colors -->
+    <Color x:Key="PrimaryMenuItemBackgroundColor">#181818</Color>
+    <Color x:Key="SecondaryMenuItemBackgroundColor">#1E1E1E</Color>
+    <Color x:Key="TertiaryMenuItemBackgroundColor">#1B1B1B</Color>
+
+    <Color x:Key="MenuItemBorderColor">#2d2d2d</Color>
+
+    <Color x:Key="PrimaryMenuItemForegroundColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryMenuItemForegroundColor">#E1E1E1</Color>
+    <Color x:Key="TertiaryMenuItemForegroundColor">#C8C8C8</Color>
+
+    <Color x:Key="MenuItemBackgroundHoverColor">#1E1E1E</Color>
+    <Color x:Key="MenuItemBorderHoverColor">#2d2d2d</Color>
+    <Color x:Key="MenuItemForegroundHoverColor">#FFFFFF</Color>
+
+    <!-- Base ScrollBar Colors -->
+    <Color x:Key="ScrollBarBackgroundColor">#181818</Color>
+    <Color x:Key="ScrollBarBorderColor">#2d2d2d</Color>
+    <Color x:Key="ScrollBarThumbColor">#1E1E1E</Color>
+
+    <!-- Window Brushes -->
+    <SolidColorBrush x:Key="PrimaryWindowAccentBrush"
+         Color="{DynamicResource PrimaryWindowAccentColor}" />
+    <SolidColorBrush x:Key="PrimaryWindowBrush"
+         Color="{DynamicResource PrimaryWindowColor}" />
+    <SolidColorBrush x:Key="SecondaryWindowBrush"
+         Color="{DynamicResource SecondaryWindowColor}" />
+    <SolidColorBrush x:Key="TertiaryWindowBrush"
+         Color="{DynamicResource TertiaryWindowColor}" />
+
+    <SolidColorBrush x:Key="PrimaryWindowForegroundBrush"
+         Color="{DynamicResource PrimaryWindowForegroundColor}" />
+    <SolidColorBrush x:Key="SecondaryWindowForegroundBrush"
+         Color="{DynamicResource SecondaryWindowForegroundColor}" />
+    <SolidColorBrush x:Key="TertiaryWindowForegroundBrush"
+         Color="{DynamicResource TertiaryWindowForegroundColor}" />
+
+    <SolidColorBrush x:Key="WindowBorderBrush"
+         Color="{DynamicResource WindowBorderColor}" />
+
+    <!-- Button Brushes -->
+    <SolidColorBrush x:Key="PrimaryButtonAccentBrush"
+         Color="{DynamicResource PrimaryButtonAccentColor}" />
+    <SolidColorBrush x:Key="PrimaryButtonBrush"
+         Color="{DynamicResource PrimaryButtonColor}" />
+    <SolidColorBrush x:Key="SecondaryButtonBrush"
+         Color="{DynamicResource SecondaryButtonColor}" />
+    <SolidColorBrush x:Key="TertiaryButtonBrush"
+         Color="{DynamicResource TertiaryButtonColor}" />
+
+    <SolidColorBrush x:Key="PrimaryButtonForegroundBrush"
+         Color="{DynamicResource PrimaryButtonForegroundColor}" />
+    <SolidColorBrush x:Key="SecondaryButtonForegroundBrush"
+         Color="{DynamicResource SecondaryButtonForegroundColor}" />
+    <SolidColorBrush x:Key="TertiaryButtonForegroundBrush"
+         Color="{DynamicResource TertiaryButtonForegroundColor}" />
+
+    <SolidColorBrush x:Key="ButtonBorderBrush"
+         Color="{DynamicResource ButtonBorderColor}" />
+
+    <!-- Editor Brushes -->
+    <SolidColorBrush x:Key="EditorBackgroundBrush"
+         Color="{DynamicResource EditorBackgroundColor}" />
+    <SolidColorBrush x:Key="EditorForegroundBrush"
+         Color="{DynamicResource EditorForegroundColor}" />
+    <SolidColorBrush x:Key="EditorLineNumbersForegroundBrush"
+         Color="{DynamicResource EditorLineNumbersForegroundColor}" />
+
+    <!-- Tooltip Brushes -->
+    <SolidColorBrush x:Key="TooltipBackgroundBrush"
+         Color="{DynamicResource TooltipBackgroundColor}" />
+    <SolidColorBrush x:Key="TooltipBorderBrush"
+         Color="{DynamicResource TooltipBorderColor}" />
+    <SolidColorBrush x:Key="TooltipForegroundBrush"
+         Color="{DynamicResource TooltipForegroundColor}" />
+
+    <!-- MenuItem Brushes -->
+    <SolidColorBrush x:Key="PrimaryMenuItemBackgroundBrush"
+         Color="{DynamicResource PrimaryMenuItemBackgroundColor}" />
+    <SolidColorBrush x:Key="SecondaryMenuItemBackgroundBrush"
+         Color="{DynamicResource SecondaryMenuItemBackgroundColor}" />
+    <SolidColorBrush x:Key="TertiaryMenuItemBackgroundBrush"
+         Color="{DynamicResource TertiaryMenuItemBackgroundColor}" />
     
+    <SolidColorBrush x:Key="MenuItemBorderBrush"
+         Color="{DynamicResource MenuItemBorderColor}" />
+
+
+    <SolidColorBrush x:Key="PrimaryMenuItemForegroundBrush"
+         Color="{DynamicResource PrimaryMenuItemForegroundColor}" />
+    <SolidColorBrush x:Key="SecondaryMenuItemForegroundBrush"
+         Color="{DynamicResource SecondaryMenuItemForegroundColor}" />
+    <SolidColorBrush x:Key="TertiaryMenuItemForegroundBrush"
+         Color="{DynamicResource TertiaryMenuItemForegroundColor}" />
+
+    <SolidColorBrush x:Key="MenuItemBackgroundHoverBrush"
+         Color="{DynamicResource MenuItemBackgroundHoverColor}" />
+    <SolidColorBrush x:Key="MenuItemBorderHoverBrush"
+         Color="{DynamicResource MenuItemBorderHoverColor}" />
+    <SolidColorBrush x:Key="MenuItemForegroundHoverBrush"
+         Color="{DynamicResource MenuItemForegroundHoverColor}" />
+
+    <!-- Scrollbar Brushes -->
+    <SolidColorBrush x:Key="ScrollBarBackgroundBrush"
+         Color="{DynamicResource ScrollBarBackgroundColor}" />
+    <SolidColorBrush x:Key="ScrollBarBorderBrush"
+         Color="{DynamicResource ScrollBarBorderColor}" />
+    <SolidColorBrush x:Key="ScrollBarThumbBrush"
+         Color="{DynamicResource ScrollBarThumbColor}" />
+
 </ResourceDictionary>

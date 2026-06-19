@@ -6,10 +6,7 @@
 
     <!-- Code fonts -->
     <FontFamily x:Key="FiraCode">pack://application:,,,/Resources/Fonts/Code/#FiraCode</FontFamily>
-    <FontFamily x:Key="FiraCode_Italic">pack://application:,,,/Resources/Fonts/Code/#FiraCode_Italic</FontFamily>
-
     <FontFamily x:Key="JetBrainsMono">pack://application:,,,/Resources/Fonts/Code/#JetBrainsMono</FontFamily>
-    <FontFamily x:Key="JetBrainsMono_Italic">pack://application:,,,/Resources/Fonts/Code/#JetBrainsMono_Italic</FontFamily>
-
+    <FontFamily x:Key="CascadiaCode">pack://application:,,,/Resources/Fonts/Code/#CascadiaCode</FontFamily>
 
 </ResourceDictionary>

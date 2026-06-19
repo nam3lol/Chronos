@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
-
 class AnimLib
 {
     public static readonly IEasingFunction Quad = new QuadraticEase { EasingMode = EasingMode.EaseInOut };

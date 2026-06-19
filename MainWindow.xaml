@@ -16,22 +16,25 @@
         FontFamily="{DynamicResource Poppins}"
         ResizeMode="CanResize"
         Background="Transparent"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
         Icon="/Resources/app.ico" 
         Loaded="Window_Loaded">
 
     <WindowChrome.WindowChrome>
         <WindowChrome
-        CaptionHeight="0"
-        ResizeBorderThickness="0,0,6,6"
-        GlassFrameThickness="0"
-        UseAeroCaptionButtons="False" CornerRadius="0,0,0,0"/>
+            CaptionHeight="0"
+            ResizeBorderThickness="5"
+            GlassFrameThickness="0"
+            UseAeroCaptionButtons="False" 
+            CornerRadius="0,0,0,0"/>
     </WindowChrome.WindowChrome>
 
     <Grid x:Name="grid_Main">
         <Border x:Name="border_Main" 
                 BorderThickness="1"
-                Background="{DynamicResource PrimaryBrush}" 
-                BorderBrush="{DynamicResource BorderBrush}">
+                Background="{DynamicResource PrimaryWindowBrush}" 
+                BorderBrush="{DynamicResource WindowBorderBrush}">
             <Grid x:Name="grid_BorderGrid">
 
                 <Grid.RowDefinitions>
@@ -43,7 +46,7 @@
 
                 <Border x:Name="border_TitleBar"
                         Grid.Row="0"
-                        Background="{DynamicResource TertiaryBrush}" 
+                        Background="{DynamicResource TertiaryWindowBrush}" 
                         Height="32"
                         MouseLeftButtonDown="Drag">
                     <Grid>
@@ -56,7 +59,7 @@
 
                         <Path Grid.Column="0" 
                               Data="{DynamicResource Logo}" 
-                              Fill="{DynamicResource PrimaryForegroundBrush}" 
+                              Fill="{DynamicResource PrimaryWindowForegroundBrush}" 
                               Width="21" 
                               Height="20" 
                               VerticalAlignment="Center"
@@ -64,102 +67,163 @@
                               Stretch="Fill" Margin="6,0,6,0"/>
 
                         <Grid x:Name="grid_AppMenuContainer"
-                              Grid.Column="1" Margin="5,5,5,5">
+                              Grid.Column="1" Margin="0,5,5,5">
                             <Grid>
                                 <Menu VerticalAlignment="Center"
-                                      Background="{DynamicResource TertiaryBrush}"
-                                      Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                      Background="{DynamicResource TertiaryWindowBrush}"
+                                      Foreground="{DynamicResource SecondaryWindowBrush}"
                                       FontFamily="{DynamicResource Poppins}"
-                                      FontSize="14" HorizontalAlignment="Left">
-                                    <MenuItem Header="File">
-                                        <MenuItem x:Name="menuItem_NewWindow" 
-                                                  Header="New Window" 
+                                      FontSize="14" HorizontalAlignment="Left" >
+                                    
+                                    <MenuItem Header="File"
+                                              Style="{DynamicResource TopLevelMenuItem}"
+                                              Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}">
+                                        <MenuItem x:Name="menuItem_NewWindow"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  Header="New Window"
+                                                  Tag="{DynamicResource OpenNew}"
                                                   Click="menuItemClick_File"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
-                                                  FontFamily="{DynamicResource Poppins}"/>
-                                        <Separator/>
+                                                  BorderThickness="0"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}">
+                                        </MenuItem>
+                                        <Separator Style="{DynamicResource MenuItemSeperator}"/>
                                         <MenuItem x:Name="menuItem_OpenFile" 
-                                                  Header="Open File" 
+                                                  Header="Open File"
+                                                  BorderThickness="0"
+                                                  Tag="{DynamicResource OpenFile}"
+                                                  Style="{DynamicResource SubMenuItem}"
                                                   Click="menuItemClick_File"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                         <MenuItem x:Name="menuItem_SaveFile" 
-                                                  Header="Save File" 
+                                                  Header="Save File"
+                                                  BorderThickness="0"
+                                                  Tag="{DynamicResource SaveFile}"
+                                                  Style="{DynamicResource SubMenuItem}"
                                                   Click="menuItemClick_File"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
-                                        <Separator/>
+                                        <Separator Style="{DynamicResource MenuItemSeperator}"/>
                                         <MenuItem x:Name="menuItem_Exit" 
-                                                  Header="Exit" 
+                                                  Header="Exit"
+                                                  BorderThickness="0"
+                                                  Tag="{DynamicResource Close}"
+                                                  Style="{DynamicResource SubMenuItem}"
                                                   Click="menuItemClick_File"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
 
-                                    <MenuItem Header="Edit" Margin="5,0,5,0">
+                                    <MenuItem Header="Edit"
+                                              Style="{DynamicResource TopLevelMenuItem}"
+                                              Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}">
                                         <MenuItem x:Name="menuItem_Undo" 
-                                                  Header="Undo" 
+                                                  Header="Undo"
+                                                  BorderThickness="0"
+                                                  Tag="{DynamicResource Undo}"
+                                                  Style="{DynamicResource SubMenuItem}"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                         <MenuItem x:Name="menuItem_Redo" 
-                                                  Header="Redo" 
+                                                  Header="Redo"
+                                                  Tag="{DynamicResource Redo}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
-                                        <Separator/>
+                                        <Separator Style="{DynamicResource MenuItemSeperator}"/>
                                         <MenuItem x:Name="menuItem_Cut" 
-                                                  Header="Cut" 
+                                                  Header="Cut"
+                                                  Tag="{DynamicResource Cut}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                         <MenuItem x:Name="menuItem_Copy" 
-                                                  Header="Copy" 
+                                                  Header="Copy"
+                                                  Tag="{DynamicResource Copy}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                         <MenuItem x:Name="menuItem_Paste" 
-                                                  Header="Paste" 
+                                                  Header="Paste"
+                                                  Tag="{DynamicResource Paste}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                         <MenuItem x:Name="menuItem_Delete" 
-                                                  Header="Delete" 
+                                                  Header="Delete"
+                                                  Tag="{DynamicResource Delete}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
-                                        <Separator/>
-                                        <MenuItem x:Name="menuItem_SearchOnline" 
-                                                  Header="Search Online" 
+                                        <Separator Style="{DynamicResource MenuItemSeperator}"/>
+                                        <MenuItem x:Name="menuItem_SearchOnline"
+                                                  Header="Search Online"
+                                                  Tag="{DynamicResource Internet}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_Edit"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
 
-                                    <MenuItem Header="View">
+                                    <MenuItem Header="View" 
+                                              Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
+                                              Style="{DynamicResource TopLevelMenuItem}">
 
                                         <MenuItem x:Name="menuItem_ToggleSidebar" 
-                                                  Header="Toggle Explorer" 
+                                                  Header="Explorer"
+                                                  Tag="{DynamicResource Sidebar_Disabled}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  IsCheckable="True"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_View"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
-                                                  FontFamily="{DynamicResource Poppins}"/>
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}">
+                                        </MenuItem>
                                         <MenuItem x:Name="menuItem_ToggleBottombar" 
-                                                  Header="Toggle Status Bar" 
+                                                  Header="Status Bar"
+                                                  Tag="{DynamicResource Bottombar_Disabled}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  IsCheckable="True"
+                                                  BorderThickness="0"
                                                   Click="menuItemClick_View"
-                                                  Background="{DynamicResource TertiaryBrush}"
-                                                  Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
+                                                  FontFamily="{DynamicResource Poppins}"/>
+                                        <Separator Style="{DynamicResource MenuItemSeperator}"/>
+                                        <MenuItem x:Name="menuItem_ToggleLineNumbers" 
+                                                  Header="Line Numbers"
+                                                  IsCheckable="True"
+                                                  Tag="{DynamicResource Number}"
+                                                  Style="{DynamicResource SubMenuItem}"
+                                                  BorderThickness="0"
+                                                  Click="menuItemClick_View"
+                                                  Background="{DynamicResource TertiaryMenuItemBackgroundBrush}"
+                                                  Foreground="{DynamicResource SecondaryMenuItemForegroundBrush}"
                                                   FontFamily="{DynamicResource Poppins}"/>
                                     </MenuItem>
                                 </Menu>
@@ -173,7 +237,7 @@
                                 Height="25" 
                                 Width="25" 
                                 Style="{DynamicResource RoundedButtonStyle}"
-                                Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                 Background="Transparent" 
                                 BorderBrush="Transparent" Margin="3.5,0,0,0" Click="buttonClick_WindowControls">
                                 <Path Grid.Column="0" 
@@ -184,13 +248,13 @@
                                   VerticalAlignment="Center"
                                   Stretch="Fill"/>
                             </Button>
-                            
+
                             <Button x:Name="button_Maximize" 
                                 Grid.Column="3" 
                                 Height="25" 
                                 Width="25"
                                 Style="{DynamicResource RoundedButtonStyle}"
-                                Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                 Background="Transparent" 
                                 BorderBrush="Transparent" Margin="3.5,0,3.5,0" Click="buttonClick_WindowControls">
                                 <Path x:Name="path_Maximize" Grid.Column="0" 
@@ -207,7 +271,7 @@
                                 Height="25" 
                                 Width="25"
                                 Style="{DynamicResource RoundedButtonStyle}"
-                                Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                 Background="Transparent" 
                                 BorderBrush="Transparent" Click="buttonClick_WindowControls" Margin="0,0,3.5,0">
                                 <Path Grid.Column="0" 
@@ -226,7 +290,7 @@
 
                 <Border x:Name="border_ToolBar"
                         Grid.Row="1"
-                        Background="{DynamicResource SecondaryBrush}" 
+                        Background="{DynamicResource SecondaryWindowBrush}" 
                         Height="32"
                         MouseLeftButtonDown="Drag">
                     <Grid>
@@ -237,8 +301,8 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border VerticalAlignment="Top" Background="{DynamicResource BorderBrush}" Height="1" Grid.ColumnSpan="67"/>
-                        <Border Background="{DynamicResource BorderBrush}" VerticalAlignment="Bottom" Height="1" Grid.ColumnSpan="67"/>
+                        <Border VerticalAlignment="Top" Background="{DynamicResource WindowBorderBrush}" Height="1" Grid.ColumnSpan="67"/>
+                        <Border Background="{DynamicResource WindowBorderBrush}" VerticalAlignment="Bottom" Height="1" Grid.ColumnSpan="67"/>
 
 
 
@@ -248,7 +312,7 @@
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Margin="5,0,2.5,0" Click="buttonClick_ToolbarControlsLeft">
                                 <Path Grid.Column="0" 
@@ -258,6 +322,11 @@
                                     Height="15" 
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Open file
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
 
                             <Button x:Name="button_SaveFile" 
@@ -265,7 +334,7 @@
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="2.5,0,5,0">
@@ -276,14 +345,19 @@
                                     Height="15" 
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Save file
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
-                            <Border Background="{DynamicResource BorderBrush}" Width="1"/>
+                            <Border Background="{DynamicResource WindowBorderBrush}" Width="1"/>
                             <Button x:Name="button_Cut" 
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="5,0,2.5,0">
@@ -294,13 +368,18 @@
                                     Height="15" 
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Cut
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="button_Copy" 
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="2.5,0,2.5,0">
@@ -311,13 +390,18 @@
                                     Height="15" 
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Copy
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="button_Paste" 
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="2.5,0,2.5,0">
@@ -325,16 +409,21 @@
                                     Data="{DynamicResource Paste}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
                                     HorizontalAlignment="Center"
-                                    Height="15" 
+                                    Height="16"
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Paste
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="button_Delete" 
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="2.5,0,5,0">
@@ -345,15 +434,20 @@
                                     Height="15" 
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Delete
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
-                            <Border Background="{DynamicResource BorderBrush}" Width="1"/>
+                            <Border Background="{DynamicResource WindowBorderBrush}" Width="1"/>
                             <Button x:Name="button_Undo"
                                     IsEnabled="False"
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="5,0,2.5,0">
@@ -364,6 +458,11 @@
                                     Height="15" 
                                     VerticalAlignment="Center"
                                     Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Undo
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
                             <Button x:Name="button_Redo"
                                     IsEnabled="False"
@@ -371,7 +470,7 @@
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
                                     Margin="2.5,0,5,0">
@@ -382,20 +481,25 @@
                                       Height="15" 
                                       VerticalAlignment="Center"
                                       Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Redo
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
-                            <Border Background="{DynamicResource BorderBrush}" Width="1"/>
+                            <Border Background="{DynamicResource WindowBorderBrush}" Width="1"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Column="3">
-                            
-                            <Border Background="{DynamicResource BorderBrush}" Width="1" Grid.RowSpan="67" HorizontalAlignment="Center"/>
+
+                            <Border Background="{DynamicResource WindowBorderBrush}" Width="1" Grid.RowSpan="67" HorizontalAlignment="Center"/>
 
                             <Button x:Name="button_ToggleSidebar"
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" Click="buttonClick_ToolbarControlsRight" Margin="5,0,2.5,0">
                                 <Path x:Name="path_Sidebar" Grid.Column="0" 
                                       Data="{DynamicResource Sidebar_Disabled}" 
@@ -404,14 +508,19 @@
                                       Height="15" 
                                       VerticalAlignment="Center"
                                       Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Toggle Explorer
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
-                            
+
                             <Button x:Name="button_ToggleBottombar"
                                     Height="25" 
                                     Width="25"
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Margin="2.5,0,2.5,0" Click="buttonClick_ToolbarControlsRight">
                                 <Path x:Name="path_Bottombar" Grid.Column="0" 
@@ -421,6 +530,11 @@
                                       Height="15" 
                                       VerticalAlignment="Center"
                                       Stretch="Fill"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Toggle Statusbar
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
 
                             <Button x:Name="button_Settings" 
@@ -428,7 +542,7 @@
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Width="25" 
                                     Background="Transparent"
-                                    Foreground="{DynamicResource SecondaryForegroundBrush}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Margin="2.5,0,5,0" Click="buttonClick_ToolbarControlsRight">
                                 <Path x:Name="path_Settings" Grid.Column="0" 
@@ -439,8 +553,13 @@
                                       VerticalAlignment="Center"
                                       Stretch="Fill"
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        Open Settings
+                                    </ToolTip>
+                                </Button.ToolTip>
                             </Button>
-                            
+
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -449,15 +568,23 @@
                       Grid.Row="2">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition 
+                            x:Name="SidebarColumn"
+                            Width="194"
+                            MinWidth="194"
+                            MaxWidth="500"/>
+                        <ColumnDefinition 
+                            x:Name="SplitterColumn"
+                            Width="5"/>
+                        <ColumnDefinition 
+                            x:Name="ContentColumn"
+                            Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Border x:Name="border_Sidebar"
-                            Visibility="Collapsed"
+                            Visibility="Visible"
                             Grid.Column="0"
-                            Background="{DynamicResource TertiaryBrush}" 
-                            Width="192">
+                            Background="{DynamicResource TertiaryWindowBrush}">
 
                         <Grid>
 
@@ -465,53 +592,58 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            
-                            <Border Height="30">
-                                <Border.Background>
-                                    <SolidColorBrush Color="{DynamicResource TertiaryColor}"/>
-                                </Border.Background>
+
+                            <Border Height="30" 
+                                    Grid.Row="0"
+                                    Background="{DynamicResource TertiaryWindowBrush}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Path Grid.Column="0" 
-                                          Data="{DynamicResource Search}" 
-                                          Fill="{DynamicResource SecondaryForegroundBrush}"                                    
-                                          Width="15" 
-                                          HorizontalAlignment="Center"
-                                          Height="15" 
-                                          VerticalAlignment="Center"
-                                          Stretch="Fill" Margin="7,0,7,0"/>
-                                    <TextBox Grid.Column="1"
-                                             Background="Transparent"
-                                             BorderBrush="Transparent"
-                                             BorderThickness="0"
-                                             Text="Search" 
-                                             CaretBrush="{DynamicResource SecondaryForegroundBrush}"
-                                             VerticalAlignment="Center"
-                                             Foreground="{DynamicResource SecondaryForegroundBrush}" Margin="0,0,7,0"/>
 
-                                    <Border Background="{DynamicResource BorderBrush}" Grid.ColumnSpan="67" VerticalAlignment="Bottom" Height="1"/>
+                                    <TextBlock x:Name="textblock_SidebarTitle"
+                                               Grid.Column="0"
+                                               VerticalAlignment="Center"
+                                               Margin="10,0,0,0"
+                                               FontSize="12"
+                                               FontFamily="{DynamicResource Poppins}"
+                                               Foreground="{DynamicResource SecondaryWindowForegroundBrush}"
+                                               Text="Explorer"/>
+
+
                                 </Grid>
                             </Border>
 
-                            <Border Background="{DynamicResource BorderBrush}" Width="1" Grid.RowSpan="67" HorizontalAlignment="Right"/>
+                            <Border Background="{DynamicResource WindowBorderBrush}" 
+                                    Width="1" 
+                                    Grid.RowSpan="67" 
+                                    HorizontalAlignment="Right"/>
 
                         </Grid>
                     </Border>
 
+                    <GridSplitter Grid.Column="1"
+                                  Width="5"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  ResizeBehavior="PreviousAndNext"
+                                  ResizeDirection="Columns"
+                                  Background="Transparent"/>
+
                     <avalonEdit:TextEditor
                         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                         Name="avalonEdit_TextEditor"
-                        Background="Transparent"
-                        Foreground="{DynamicResource SecondaryForegroundBrush}"
+                        Background="{DynamicResource EditorBackgroundBrush}"
+                        Foreground="{DynamicResource EditorForegroundBrush}"
+                        LineNumbersForeground="{DynamicResource EditorLineNumbersForegroundBrush}"
                         ShowLineNumbers="True"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
                         FontFamily="Consolas"
                         Padding="0"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         FontSize="10pt"/>
 
 
@@ -520,7 +652,7 @@
                 <Border x:Name="border_Bottombar"
                         Visibility="Collapsed"
                         Grid.Row="3"
-                        Background="{DynamicResource SecondaryBrush}" 
+                        Background="{DynamicResource SecondaryWindowBrush}" 
                         Height="32"
                         MouseLeftButtonDown="Drag">
                     <Grid>
@@ -530,23 +662,21 @@
                             <ColumnDefinition Width="32"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Background="{DynamicResource BorderBrush}" VerticalAlignment="Top" Height="1" Grid.ColumnSpan="67"/>
+                        <Border Background="{DynamicResource WindowBorderBrush}" VerticalAlignment="Top" Height="1" Grid.ColumnSpan="67"/>
                     </Grid>
                 </Border>
-
             </Grid>
         </Border>
-
-        <Grid x:Name="grid_Splash" Margin="0,484,0,-484" PreviewMouseLeftButtonDown="Drag">
+        
+                <Grid x:Name="grid_Splash" Margin="0,484,0,-484" PreviewMouseLeftButtonDown="Drag">
             <Path Grid.Column="0" 
                       Data="{DynamicResource Logo}" 
-                      Fill="{DynamicResource PrimaryForegroundBrush}" 
+                      Fill="{DynamicResource PrimaryWindowForegroundBrush}" 
                       Width="176" 
                       Height="175" 
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Stretch="Fill" Margin="6,0,6,0"/>
         </Grid>
-
     </Grid>
 </Window>

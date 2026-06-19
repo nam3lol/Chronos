@@ -39,6 +39,7 @@ namespace Chronos
         {
             ToggleSidebar(Settings.Default.Sidebar);
             ToggleBottombar(Settings.Default.Bottombar);
+            ToggleLineNumbers(Settings.Default.LineNumbers);
 
             Topmost = Settings.Default.Topmost;
 
@@ -49,6 +50,7 @@ namespace Chronos
         {
             Settings.Default.Sidebar = border_Sidebar.Visibility == Visibility.Visible;
             Settings.Default.Bottombar = border_Bottombar.Visibility == Visibility.Visible;
+            Settings.Default.LineNumbers = avalonEdit_TextEditor.ShowLineNumbers;
             Settings.Default.Topmost = Topmost;
             Settings.Default.EditorFont = avalonEdit_TextEditor.FontFamily.Source;
             Settings.Default.SavedEditorContent = avalonEdit_TextEditor.Text;
@@ -69,16 +71,42 @@ namespace Chronos
             }
         }
 
+        private GridLength _sidebarWidth = new(194);
+
         public void ToggleSidebar(bool enabled)
         {
-            border_Sidebar.Visibility = enabled ? Visibility.Visible : Visibility.Collapsed;
-            path_Sidebar.Data = enabled ? GeometrySidebarEnabled : GeometrySidebarDisabled;
+            if (!enabled)
+            {
+                if (SidebarColumn.Width.Value > 0)
+                    _sidebarWidth = SidebarColumn.Width;
+            }
+
+            border_Sidebar.Visibility = enabled
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+
+            SidebarColumn.MinWidth = enabled ? 194 : 0;
+            SidebarColumn.Width = enabled ? _sidebarWidth : new GridLength(0);
+            SplitterColumn.Width = enabled ? new GridLength(5) : new GridLength(0);
+
+            menuItem_ToggleSidebar.IsChecked = enabled;
+
+            path_Sidebar.Data = enabled
+                ? GeometrySidebarEnabled
+                : GeometrySidebarDisabled;
         }
 
         public void ToggleBottombar(bool enabled)
         {
             border_Bottombar.Visibility = enabled ? Visibility.Visible : Visibility.Collapsed;
             path_Bottombar.Data = enabled ? GeometryBottombarEnabled : GeometryBottombarDisabled;
+            menuItem_ToggleBottombar.IsChecked = enabled;
+        }
+
+        public void ToggleLineNumbers(bool enabled)
+        {
+            avalonEdit_TextEditor.ShowLineNumbers = enabled;
+            menuItem_ToggleLineNumbers.IsChecked = enabled;
         }
 
         private void TextEditor_TextChanged(object? sender, EventArgs e) => 
@@ -142,6 +170,14 @@ namespace Chronos
             menuItem_Redo.IsEnabled = canRedo;
         }
 
+        public async void CloseWindow()
+        {
+            SaveSettings();
+            AnimLib.Fade(this, 1, 0, 500);
+            await Task.Delay(500);
+            Close();
+        }
+
         private async void buttonClick_WindowControls(object sender, RoutedEventArgs e)
         {
             if (sender is not Button button) return;
@@ -149,10 +185,7 @@ namespace Chronos
             switch (button.Name)
             {
                 case "button_Close":
-                    SaveSettings();
-                    AnimLib.Fade(this, 1, 0, 500);
-                    await Task.Delay(500);
-                    Close();
+                    CloseWindow();
                     break;
                 case "button_Maximize":
                     ToggleMaximized(WindowState != WindowState.Maximized);
@@ -239,7 +272,7 @@ namespace Chronos
                     UpdateUndoRedoState();
                     break;
                 case "menuItem_Exit":
-                    Application.Current.Shutdown();
+                    CloseWindow();
                     break;
             }
         }
@@ -292,6 +325,9 @@ namespace Chronos
                 case "menuItem_ToggleBottombar":
                     ToggleBottombar(border_Bottombar.Visibility != Visibility.Visible);
                     break;
+                case "menuItem_ToggleLineNumbers":
+                    ToggleLineNumbers(!avalonEdit_TextEditor.ShowLineNumbers);
+                    break;
             }
         }
 
@@ -339,13 +375,11 @@ namespace Chronos
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             InitializeUIState();
-
-            await StartSplashAnimAsync();
-
             InitializeEditor();
             LoadSettings();
-
             UpdateUndoRedoState();
+
+            await StartSplashAnimAsync();
         }
     }
 }

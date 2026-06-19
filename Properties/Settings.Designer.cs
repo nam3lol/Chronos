@@ -37,7 +37,7 @@ namespace Chronos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Sidebar {
             get {
                 return ((bool)(this["Sidebar"]));
@@ -49,7 +49,7 @@ namespace Chronos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Bottombar {
             get {
                 return ((bool)(this["Bottombar"]));
@@ -80,6 +80,18 @@ namespace Chronos.Properties {
             }
             set {
                 this["EditorFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool LineNumbers {
+            get {
+                return ((bool)(this["LineNumbers"]));
+            }
+            set {
+                this["LineNumbers"] = value;
             }
         }
     }
