@@ -239,57 +239,64 @@
                             </Grid>
                         </Grid>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="3">
+                        <StackPanel Orientation="Horizontal" 
+                                    Grid.Column="3">
 
-                            <Button x:Name="button_Minimize" 
-                                Grid.Column="2" 
-                                Height="25" 
-                                Width="25" 
-                                Style="{DynamicResource RoundedButtonStyle}"
-                                Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
-                                Background="Transparent" 
-                                BorderBrush="Transparent" Margin="3.5,0,0,0" Click="buttonClick_WindowControls">
+                            <Button x:Name="button_Minimize"
+                                    Height="25" 
+                                    Width="25" 
+                                    Style="{DynamicResource RoundedButtonStyle}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
+                                    Background="Transparent" 
+                                    BorderBrush="Transparent" 
+                                    Margin="4,0,2,0" 
+                                    Click="buttonClick_WindowControls">
                                 <Path Grid.Column="0" 
-                                  Data="{DynamicResource Minimize}" 
-                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                Width="14" 
-                                  HorizontalAlignment="Center"
-                                  Height="1.5" 
-                                  VerticalAlignment="Center"
-                                  Stretch="Fill"/>
+                                    Data="{DynamicResource Minimize}" 
+                                    Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                
+                                    Width="15" 
+                                    HorizontalAlignment="Center"
+                                    Height="1.5" 
+                                    VerticalAlignment="Center"
+                                    Stretch="Fill"/>
                             </Button>
 
-                            <Button x:Name="button_Maximize" 
-                                Grid.Column="3" 
-                                Height="25" 
-                                Width="25"
-                                Style="{DynamicResource RoundedButtonStyle}"
-                                Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
-                                Background="Transparent" 
-                                BorderBrush="Transparent" Margin="3.5,0,3.5,0" Click="buttonClick_WindowControls">
+                            <Button x:Name="button_Maximize"
+                                    Height="25" 
+                                    Width="25"
+                                    Style="{DynamicResource RoundedButtonStyle}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
+                                    Background="Transparent" 
+                                    BorderBrush="Transparent" 
+                                    Margin="2,0,2,0" 
+                                    Click="buttonClick_WindowControls">
                                 <Path x:Name="path_Maximize" Grid.Column="0" 
-                                  Data="{DynamicResource Maximize}" 
-                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                  Width="14" 
-                                  HorizontalAlignment="Center"
-                                  Height="14" 
-                                  VerticalAlignment="Center"
-                                  Stretch="Fill"/>
+                                    Data="{DynamicResource Maximize}" 
+                                    Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                  
+                                    Width="15" 
+                                    HorizontalAlignment="Center"
+                                    Height="15" 
+                                    VerticalAlignment="Center"
+                                    Stretch="Fill"/>
                             </Button>
 
-                            <Button x:Name="button_Close" 
-                                Grid.Column="4" 
-                                Height="25" 
-                                Width="25"
-                                Style="{DynamicResource RoundedButtonStyle}"
-                                Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
-                                Background="Transparent" 
-                                BorderBrush="Transparent" Click="buttonClick_WindowControls" Margin="0,0,3.5,0">
+                            <Button x:Name="button_Close"
+                                    Height="25" 
+                                    Width="25"
+                                    Style="{DynamicResource RoundedButtonStyle}"
+                                    Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
+                                    Background="Transparent" 
+                                    BorderBrush="Transparent" 
+                                    Click="buttonClick_WindowControls" 
+                                    Margin="2,0,4,0">
                                 <Path Grid.Column="0" 
-                                  Data="{DynamicResource Close}" 
-                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                  Width="14" 
-                                  HorizontalAlignment="Center"
-                                  Height="14" 
-                                  VerticalAlignment="Center"
-                                  Stretch="Fill"/>
+                                    Data="{DynamicResource Close}" 
+                                    Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                  
+                                    Width="15" 
+                                    HorizontalAlignment="Center"
+                                    Height="15" 
+                                    VerticalAlignment="Center"
+                                    Stretch="Fill"/>
                             </Button>
 
                         </StackPanel>
@@ -305,7 +312,6 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
@@ -315,7 +321,7 @@
 
 
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="2">
+                        <StackPanel Orientation="Horizontal" Grid.Column="0">
                             <Button x:Name="button_OpenFile" 
                                     Height="25" 
                                     Width="25"
@@ -323,7 +329,7 @@
                                     Background="Transparent"
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
-                                    Margin="5,0,2.5,0" Click="buttonClick_ToolbarControlsLeft">
+                                    Margin="4,0,2,0" Click="buttonClick_ToolbarControlsLeft">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource OpenFile}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
@@ -346,7 +352,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="2.5,0,5,0">
+                                    Margin="2,0,4,0">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource SaveFile}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
@@ -369,7 +375,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="5,0,2.5,0">
+                                    Margin="4,0,2,0">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource Cut}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
@@ -391,7 +397,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="2.5,0,2.5,0">
+                                    Margin="2,0,2,0">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource Copy}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
@@ -413,7 +419,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="2.5,0,2.5,0">
+                                    Margin="2,0,2,0">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource Paste}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
@@ -435,7 +441,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="2.5,0,5,0">
+                                    Margin="2,0,4,0">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource Delete}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
@@ -459,7 +465,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="5,0,2.5,0">
+                                    Margin="4,0,2,0">
                                 <Path Grid.Column="0" 
                                     Data="{DynamicResource Undo}" 
                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
@@ -482,7 +488,7 @@
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
                                     Click="buttonClick_ToolbarControlsLeft" 
-                                    Margin="2.5,0,5,0">
+                                    Margin="2,0,4,0">
                                 <Path Grid.Column="0" 
                                       Data="{DynamicResource Redo}" 
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"                                    Width="15" 
@@ -499,7 +505,7 @@
                             <Border Background="{DynamicResource WindowBorderBrush}" Width="1"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="3">
+                        <StackPanel Orientation="Horizontal" Grid.Column="2">
 
                             <Border Background="{DynamicResource WindowBorderBrush}" Width="1" Grid.RowSpan="67" HorizontalAlignment="Center"/>
 
@@ -509,7 +515,7 @@
                                     Style="{DynamicResource RoundedButtonStyle}"
                                     Background="Transparent"
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
-                                    BorderBrush="Transparent" Click="buttonClick_ToolbarControlsRight" Margin="5,0,2.5,0">
+                                    BorderBrush="Transparent" Click="buttonClick_ToolbarControlsRight" Margin="4,0,2,0">
                                 <Path x:Name="path_Sidebar" Grid.Column="0" 
                                       Data="{DynamicResource Sidebar_Disabled}" 
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
@@ -531,7 +537,7 @@
                                     Background="Transparent"
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
-                                    Margin="2.5,0,2.5,0" Click="buttonClick_ToolbarControlsRight">
+                                    Margin="2,0,2,0" Click="buttonClick_ToolbarControlsRight">
                                 <Path x:Name="path_Bottombar" Grid.Column="0" 
                                       Data="{DynamicResource Bottombar_Disabled}" 
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"                                    Width="15" 
@@ -553,7 +559,7 @@
                                     Background="Transparent"
                                     Foreground="{DynamicResource SecondaryButtonForegroundBrush}"
                                     BorderBrush="Transparent" 
-                                    Margin="2.5,0,5,0" Click="buttonClick_ToolbarControlsRight">
+                                    Margin="2,0,4,0" Click="buttonClick_ToolbarControlsRight">
                                 <Path x:Name="path_Settings" Grid.Column="0" 
                                       Data="{DynamicResource Settings}" 
                                       Width="15" 
@@ -650,12 +656,11 @@
                         ShowLineNumbers="True"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto"
+                        AllowDrop="True"
                         FontFamily="Consolas"
-                        Padding="0"
                         Grid.Column="2"
-                        FontSize="10pt"/>
-
-
+                        FontSize="10pt">
+                    </avalonEdit:TextEditor>
                 </Grid>
 
                 <Border x:Name="border_Bottombar"
